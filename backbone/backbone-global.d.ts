@@ -7,7 +7,7 @@
 
 declare namespace Backbone {
 
-    interface AddOptions extends Silenceable {
+    interface AddOptions extends Silenceable, Parseable {
         at?: number;
         merge?: boolean;
     }
@@ -23,7 +23,7 @@ declare namespace Backbone {
     }
 
     interface RouterOptions {
-        routes: any;
+        routes?: any;
     }
 
     interface Silenceable {
@@ -230,7 +230,7 @@ declare namespace Backbone {
         remove(model: {}|TModel, options?: Silenceable): TModel;
         remove(models: ({}|TModel)[], options?: Silenceable): TModel[];
         reset(models?: TModel[], options?: Silenceable): TModel[];
-        set(models?: TModel[], options?: Silenceable): TModel[];
+        set(models?: TModel[] | any[] | any, options?: Silenceable | Parseable): TModel[];
         shift(options?: Silenceable): TModel;
         sort(options?: Silenceable): Collection<TModel>;
         unshift(model: TModel, options?: AddOptions): TModel;
@@ -344,6 +344,7 @@ declare namespace Backbone {
 
         handlers: any[];
         interval: number;
+        fragment?: string;
 
         start(options?: HistoryOptions): boolean;
 
